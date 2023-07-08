@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/CodeSagarOfficial/jenkins-scripts.git'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                sh 'cd jenkins-scripts/terraform-pipeline ; terraform init -input=false'
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                sh 'cd jenkins-scripts/terraform-pipeline ; terraform init -input=false -out tfplan'
+            }
+        }
+
+        // stage('Terraform Apply') {
+        //     steps {
+        //         // Apply the Terraform changes
+        //         sh 'terraform apply -auto-approve'
+        //     }
+        // }
+
+        // stage('Terraform Destroy') {
+        //     steps {
+        //         // Destroy the infrastructure created by Terraform
+        //         sh 'terraform destroy -auto-approve'
+        //     }
+        // }
+    }
+    
+}
