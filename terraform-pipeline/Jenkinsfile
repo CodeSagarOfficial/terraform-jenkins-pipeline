@@ -10,13 +10,13 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                sh 'cd jenkins-scripts/terraform-pipeline ; terraform init -input=false'
+                sh 'cd terraform-pipeline ; terraform init -input=false'
             }
         }
 
         stage('Terraform Plan') {
             steps {
-                sh 'cd jenkins-scripts/terraform-pipeline ; terraform init -input=false -out tfplan'
+                sh 'cd terraform-pipeline ; terraform init -input=false -out tfplan'
             }
         }
 
