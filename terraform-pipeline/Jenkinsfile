@@ -4,35 +4,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/CodeSagarOfficial/jenkins-scripts.git'
+                git branch: 'main', url: 'https://github.com/CodeSagarOfficial/jenkins-scripts.git'
             }
         }
-
-        stage('Terraform Init') {
+        stage('Terraform init') {
             steps {
-                sh 'cd terraform-pipeline ; terraform init -input=false'
+                sh 'terraform init'
             }
         }
-
-        stage('Terraform Plan') {
+        stage('Terraform plan') {
             steps {
-                sh 'cd terraform-pipeline ; terraform init -input=false -out tfplan'
+                sh 'terraform plan'
             }
         }
-
-        // stage('Terraform Apply') {
-        //     steps {
-        //         // Apply the Terraform changes
-        //         sh 'terraform apply -auto-approve'
-        //     }
-        // }
-
-        // stage('Terraform Destroy') {
-        //     steps {
-        //         // Destroy the infrastructure created by Terraform
-        //         sh 'terraform destroy -auto-approve'
-        //     }
-        // }
+        
     }
-    
 }
