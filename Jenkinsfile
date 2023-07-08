@@ -18,11 +18,11 @@ pipeline {
                 sh 'terraform init'
             }
         }
-        stage('Terraform plan') {
-            steps {
-                sh 'terraform plan'
-            }
-        }
+        // stage('Terraform plan') {
+        //     steps {
+        //         sh 'terraform plan -out tfplan'
+        //     }
+        // }
         
     }
 }
