@@ -21,8 +21,13 @@ pipeline {
         stage('Terraform plan') {
             steps {
                 sh 'terraform plan -out tfplan'
+                sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
-        
+        stage('Terraform action') {
+            steps {
+                sh 'terraform ${action} --auto-approve tfplan'
+            }
+        }
     }
 }
